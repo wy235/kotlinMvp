@@ -36,11 +36,14 @@ class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
     }
 
     override fun processLogic() {
+        //Dispatchers.Main 会报错   使用Dispatchers.Unconfined 没问题 主线程
+
         GlobalScope.launch(Dispatchers.Unconfined){
             Log.e("CurrentyThread1",Thread.currentThread().name)
             val bm = getImageResource()
             mImage.setImageResource(bm)
         }
+
 
         CoroutineScope(Dispatchers.Unconfined).launch {
             Log.e("CurrentyThread3",Thread.currentThread().name)
