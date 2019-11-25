@@ -13,6 +13,7 @@ class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
 
     override fun show(item: LivestockBean) {
         Log.e("1111111111111111111",item.toString())
+
     }
 
     override fun initView() {
