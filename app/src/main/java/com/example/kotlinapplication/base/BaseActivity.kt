@@ -1,6 +1,5 @@
 package com.example.kotlinapplication.base
 import android.os.Bundle
-import butterknife.ButterKnife
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
 
 /**
@@ -16,7 +15,6 @@ abstract class BaseActivity<P,M : BaseModel>: RxAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
-        ButterKnife.bind(this)
         initModel()
         if(mModel != null){
             mModel!!.mRxActivity = this

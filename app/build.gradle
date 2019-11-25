@@ -52,9 +52,4 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'//添加HttpLoggingInterceptor进行调试
     /*rx retrofit end*/
 
-    /*butterknife start*/
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-    /*butterknife end*/
-
 }
