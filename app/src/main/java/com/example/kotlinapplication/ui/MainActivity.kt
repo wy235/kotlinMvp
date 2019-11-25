@@ -8,6 +8,8 @@ import com.example.kotlinapplication.ui.bean.LivestockBean
 import com.example.kotlinapplication.ui.model.MainModel
 import com.example.kotlinapplication.ui.presenter.MainPresenter
 import com.example.kotlinapplication.ui.view.MainView
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.*
 
 class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
 
@@ -34,6 +36,22 @@ class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
     }
 
     override fun processLogic() {
+        GlobalScope.launch(Dispatchers.Unconfined){
+            Log.e("CurrentyThread1",Thread.currentThread().name)
+            val bm = getImageResource()
+            mImage.setImageResource(bm)
+        }
+
+        CoroutineScope(Dispatchers.Unconfined).launch {
+            Log.e("CurrentyThread3",Thread.currentThread().name)
+            val bm = getImageResource()
+            mImage.setImageResource(bm)
+        }
+    }
+
+    suspend fun getImageResource() : Int  = withContext(Dispatchers.IO){
+        Log.e("CurrentyThread2",Thread.currentThread().name)
+        withContext@ R.mipmap.ic_launcher
     }
 
     override fun getLayoutId(): Int {

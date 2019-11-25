@@ -20,8 +20,8 @@ abstract class BaseActivity<P,M : BaseModel>: RxAppCompatActivity() {
             mModel!!.mRxActivity = this
         }
         setListener()
-        processLogic()
         initView()
+        processLogic()
         initPresenter()
     }
 
