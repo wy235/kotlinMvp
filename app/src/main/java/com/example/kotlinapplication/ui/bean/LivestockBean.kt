@@ -87,6 +87,4 @@ class LivestockBean : Serializable{
                 " calfIdList=$calfIdList, calvingCount=$calvingCount, sourceRemark=$sourceRemark, " +
                 "operateDeviceType=$operateDeviceType)"
     }
-
-
 }

@@ -1,6 +1,8 @@
 package com.example.kotlinapplication.base
 import android.os.Bundle
+import android.os.PersistableBundle
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
+import icepick.Icepick
 
 /**
  *作者:wangyu
@@ -14,6 +16,7 @@ abstract class BaseActivity<P,M : BaseModel>: RxAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Icepick.restoreInstanceState(this,savedInstanceState)
         setContentView(getLayoutId())
         initModel()
         if(mModel != null){
@@ -36,4 +39,9 @@ abstract class BaseActivity<P,M : BaseModel>: RxAppCompatActivity() {
     abstract fun processLogic()
 
     abstract fun getLayoutId() : Int
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        Icepick.saveInstanceState(this, outState)
+    }
 }

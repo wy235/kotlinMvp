@@ -18,9 +18,11 @@ class MainPresenter(context: Context, mView: MainView, mModel: MainModel) :
 
     fun getUserInfoService(params : ApiParams){
         mModel.getUserInfo(params).subscribe(object : ResponseSubscribe<LivestockBean>(){
+
             override fun onNext(t: LivestockBean) {
                 mView.show(t)
             }
+
             override fun onError(e: Throwable) {
 
             }

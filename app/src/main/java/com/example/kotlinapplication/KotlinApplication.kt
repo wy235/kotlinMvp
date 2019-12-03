@@ -2,6 +2,7 @@ package com.example.kotlinapplication
 
 import android.app.Application
 import android.content.Context
+import com.greendao.gen.DaoSession
 
 /**
  *作者:wangyu
@@ -9,6 +10,8 @@ import android.content.Context
  *描述:
  */
 class KotlinApplication : Application(){
+
+    var dao : DaoSession ? = null
 
     companion object {
         var  mContext : Application ? = null
