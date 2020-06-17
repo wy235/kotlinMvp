@@ -2,6 +2,7 @@ package com.example.kotlinapplication
 
 import android.app.Application
 import android.content.Context
+import androidx.multidex.MultiDex
 import com.greendao.gen.DaoSession
 
 /**
@@ -23,5 +24,6 @@ class KotlinApplication : Application(){
     override fun onCreate() {
         super.onCreate()
         mContext = this
+        MultiDex.install(this);
     }
 }

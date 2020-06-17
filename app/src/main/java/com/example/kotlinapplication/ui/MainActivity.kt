@@ -1,7 +1,8 @@
 package com.example.kotlinapplication.ui
 
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.View
+import android.widget.Toast
 import com.example.kotlinapplication.R
 import com.example.kotlinapplication.base.BaseActivity
 import com.example.kotlinapplication.net.utils.ApiParams
@@ -12,6 +13,7 @@ import com.example.kotlinapplication.ui.view.MainView
 import icepick.State
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import kotlin.random.Random
 
 class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
 
@@ -25,7 +27,29 @@ class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
     }
 
     override fun initView() {
+        mImage.setOnClickListener {
+            Toast.makeText(this,singletonList("Hello world").toString(),Toast.LENGTH_LONG).show()
+        }
+    }
 
+    private fun getStrValue(ins : Int) : String{
+        return ins.toString();
+    }
+
+    private fun double(xx:Int) = xx
+
+    //类型转换
+    fun <T> singletonList(item : T) : MutableList<Any> {
+        var  arr = mutableListOf<Any>()
+        for (index in 0..5){
+            if(item is Int){
+                arr.add(index,item * index)
+            }else{
+                var str : String? = item as? String
+                arr.add(index,str + index)
+            }
+        }
+        return arr
     }
 
     override fun initModel() {
@@ -33,13 +57,14 @@ class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
     }
 
     override fun initPresenter() {
-        mPresenter = MainPresenter(this,this, (this!!.mModel)!!)
+        mPresenter = MainPresenter(this,this, (this.mModel)!!)
         val params = ApiParams()
         params["cattleId"] = "547"
         mPresenter!!.getUserInfoService(params)
     }
 
     override fun setListener() {
+        var number = Random.nextInt(42)
     }
 
     override fun processLogic() {
@@ -74,4 +99,19 @@ class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
     override fun getLayoutId(): Int {
         return R.layout.activity_main
     }
+
+    fun printSum(a: Int, b: Int) {
+        println("sum of $a and $b is ${a + b}")
+    }
+
+    fun getStringLength(obj : Any) : Int? {
+        if (obj !is String) return null
+        return obj.length
+    }
+
+    /*创建单例*/
+    object Resource {
+        val name = "Name"
+    }
+
 }

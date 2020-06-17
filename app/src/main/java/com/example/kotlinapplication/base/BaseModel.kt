@@ -1,5 +1,6 @@
 package com.example.kotlinapplication.base
 
+import androidx.lifecycle.ViewModel
 import com.trello.rxlifecycle3.android.ActivityEvent
 import com.trello.rxlifecycle3.android.FragmentEvent
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
@@ -13,7 +14,7 @@ import io.reactivex.schedulers.Schedulers
  *创建时间:2019/11/21 10:24
  *描述:
  */
-abstract class BaseModel{
+abstract class BaseModel : ViewModel() {
 
     var mRxActivity: RxAppCompatActivity? = null
     var mRxFragment: RxFragment? = null
