@@ -50,6 +50,7 @@ class MainActivity : BaseActivity<MainPresenter, MainModel>(),MainView{
             }
         }
         return arr
+
     }
 
     override fun initModel() {
